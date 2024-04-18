@@ -1,5 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
+import Kakao from './Kakao.js';
 
 function App() {
   return (
