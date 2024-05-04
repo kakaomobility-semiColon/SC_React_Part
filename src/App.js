@@ -1,5 +1,5 @@
 import './App.css';
-import Kakao from './Kakao.js';
+import Kakao from './component/Kakao.js';
 
 function App() {
   return (
