@@ -8,8 +8,8 @@ function App() {
   return (
     <Router>
       <div className='App'>
-        <Header /> {/* Header를 먼저 렌더링 */}
-        <Kakao />  {/* 그 다음 Kakao를 렌더링 */}
+        <Kakao />  {/* 맵이 먼저 렌더링되도록 변경 */}
+        <Header /> {/* 그 다음 Header를 렌더링 */}
       </div>
     </Router>
   );
