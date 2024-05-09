@@ -1,2 +1,4 @@
 ##api key
 .env
+##eslintcache 충돌 문제
+.eslintcache
