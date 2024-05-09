@@ -1,11 +1,17 @@
+import React from 'react';
+import Header from './component/Header';
+import Kakao from './component/Kakao';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
-import Kakao from './component/Kakao.js';
 
 function App() {
   return (
-    <div className='App'>
-      <Kakao />
-    </div>
+    <Router>
+      <div className='App'>
+        <Kakao />  {/* 맵이 먼저 렌더링되도록 변경 */}
+        <Header /> {/* 그 다음 Header를 렌더링 */}
+      </div>
+    </Router>
   );
 }
 
