@@ -30,7 +30,7 @@ function Kakao() {
             };
             const map = new window.kakao.maps.Map(container, options);
             
-            var infowindowArray = [];
+            var overlays = [];
 
             markerdata.forEach((data) => {
                 var position = new window.kakao.maps.LatLng(data.lat, data.lng);
@@ -57,30 +57,29 @@ function Kakao() {
                     position: position,
                     map: map
                 });
-
-                var infowindow = new window.kakao.maps.InfoWindow({
+                // customize overlay
+                var overlay = new window.kakao.maps.CustomOverlay({
+                    position: position,
                     content: content,
-                    disableAutoPan: true,   // 인포윈도우를 열 때 지도가 자동으로 패닝하지 않을 지 여부(default: false)
-                    position: position      //인포윈도우의 위치를 마커의 위치로 설정합니다.
+                    yAnchor: 1
                 });
 
                 window.kakao.maps.event.addListener(marker, "click", function () {
-                    closeInfoWindow();
-                    infowindow.open(map, marker);
+                    closeOverlays();
+                    overlay.setMap(map);
                 });
-
-                //인포윈도우 배열에 추가
-                infowindowArray.push(infowindow);
+                
+                overlays.push(overlay);
             });
 
-            //지도 클릭 시 모든 인포윈도우 닫기
+            //지도 클릭 시 모든 overlay 닫기
             window.kakao.maps.event.addListener(map, "click", function () {
-                closeInfoWindow();
+                closeOverlays();
             });
-            function closeInfoWindow() {
-                for (var i = 0; i < infowindowArray.length; i++) {
-                    infowindowArray[i].close();
-                }
+            function closeOverlays() {
+                overlays.forEach(function(overlay) {
+                    overlay.setMap(null); 
+                }); 
             }
         }
     };
