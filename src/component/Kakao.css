@@ -1,10 +1,10 @@
 .wrap {
     position: absolute;
-    left: 0;
+    left: -70px; /* 마커의 중앙 */
+    top: -100px;   /* 마커의 위 */
     bottom: 40px;
     width: 288px;
     height: 132px;
-    margin-left: 144px;
     text-align: left;
     overflow: hidden;
     font-size: 12px;
