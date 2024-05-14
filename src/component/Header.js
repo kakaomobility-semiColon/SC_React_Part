@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './Header.css';
 import SearchBarIcon from '../component/searchbar.svg';
 import FavoritelocIcon from '../component/favoriteloc.svg';
 import FavoritelocClickedIcon from '../component/favoriteloc_clicked.svg';
-import SearchBarClickedIcon from '../component/searchbar_clicked.svg';
+import GlassesClickedIcon from '../component/glasses_clicked.svg';
 
-export default function Header() {
+export default function Header({ onSearch }) {
   const [favoritelocClicked, setFavoritelocClicked] = useState(false);
   const [searchBarClicked, setSearchBarClicked] = useState(false);
+  const [searchKeyword, setSearchKeyword] = useState('');
 
   const toggleFavoriteloc = () => {
     setFavoritelocClicked(!favoritelocClicked);
@@ -18,8 +18,9 @@ export default function Header() {
     setSearchBarClicked(!searchBarClicked);
   };
 
-  const hideSearchBlock = () => {
-    setSearchBarClicked(false);
+  const handleSearch = () => {
+    onSearch(searchKeyword);
+    setSearchKeyword('');
   };
 
   return (
@@ -28,9 +29,7 @@ export default function Header() {
         <nav>
           <ul>
             <li>
-              <Link to="/Searchbar">
-                <img src={SearchBarIcon} alt="SearchBar" onClick={toggleSearchBar} />
-              </Link>
+              <img src={SearchBarIcon} alt="SearchBar" onClick={toggleSearchBar} />
             </li>
             <li>
               <button className="favorite-loc-button" onClick={toggleFavoriteloc}>
@@ -39,11 +38,19 @@ export default function Header() {
             </li>
           </ul>
         </nav>
-        {searchBarClicked && (
-          <div className="search-block" onClick={hideSearchBlock}>
-            <img src={SearchBarClickedIcon} alt="SearchBarClicked" className="search-bar-clicked" />
+        <div className="search-block" style={{ display: searchBarClicked ? 'block' : 'none' }}>
+          <div className="searchbar_clicked"> 
+            <div className="searchbar">
+              <img src={GlassesClickedIcon} alt="Search" className="glassesclicked-icon" onClick={handleSearch} />
+              <input
+                type="text"
+                placeholder="장소, 위치, 대중교통을 입력하세요"
+                value={searchKeyword}
+                onChange={(e) => setSearchKeyword(e.target.value)}
+              />
+            </div>
           </div>
-        )}
+        </div>
       </div>
     </header>
   );
