@@ -79,8 +79,13 @@ function Kakao() {
             function closeOverlays() {
                 overlays.forEach(function(overlay) {
                     overlay.setMap(null); 
-                }); 
+                });
             }
+            //지도 범위 재설정
+            var points = markerdata.map(data => new window.kakao.maps.LatLng(data.lat, data.lng));
+            var bounds = new window.kakao.maps.LatLngBounds();    
+            points.forEach(point => bounds.extend(point));
+            map.setBounds(bounds);
         }
     };
 
