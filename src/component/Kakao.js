@@ -30,6 +30,10 @@ function Kakao() {
             };
             const map = new window.kakao.maps.Map(container, options);
             
+            // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+            var zoomControl = new window.kakao.maps.ZoomControl();
+            map.addControl(zoomControl, window.kakao.maps.ControlPosition.RIGHT);
+
             var overlays = [];
 
             markerdata.forEach((data) => {
@@ -90,7 +94,7 @@ function Kakao() {
     };
 
     return (
-        <div id="map" style={{ width: "1194px", height: "834px" }}></div>
+        <div id="map" style={{ width: "100%", height: "100vh" }}></div>
     );
 }
 
