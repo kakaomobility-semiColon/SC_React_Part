@@ -41,17 +41,15 @@ function Kakao() {
                 var content = `<div class="wrap"> 
                                 <div class="info"> 
                                     <div class="title"> 
-                                        ${data.name}  
-                                    </div> 
+                                        ${data.name}
+                                    </div>
                                     <div class="body"> 
-                                        <div class="img"> 
-                                            <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70"> 
-                                        </div> 
                                         <div class="desc"> 
                                             <div class="ellipsis">${data.address}</div> 
                                             <div class="jibun ellipsis">${data.name}는</div> 
                                             <div class="jibun ellipsis">${data.operatorName}회사에서 만든 충전기이다.</div> 
                                         </div> 
+                                        <div class="img"></div> 
                                     </div> 
                                 </div> 
                             </div>`;

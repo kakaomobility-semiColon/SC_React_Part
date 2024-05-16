@@ -52,7 +52,7 @@
 }
 .info .desc {
     position: relative;
-    margin: 13px 0 0 90px;
+    margin: 13px 70px 0 10px;
     height: 75px;
 }
 .desc .ellipsis {
@@ -67,13 +67,15 @@
 }
 .info .img {
     position: absolute;
-    top: 6px;
-    left: 5px;
-    width: 73px;
-    height: 71px;
-    border: 1px solid #ddd;
+    top: 10px;
+    right: 15px;
+    width: 30px;
+    height: 36px;
     color: #888;
     overflow: hidden;
+    background-image: url('./SVG/bookmark.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .info:after {
     content: '';
