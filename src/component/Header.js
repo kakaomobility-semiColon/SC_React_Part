@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './Header.css';
-import SearchBarIcon from '../component/searchbar.svg';
-import FavoritelocIcon from '../component/favoriteloc.svg';
-import FavoritelocClickedIcon from '../component/favoriteloc_clicked.svg';
-import GlassesClickedIcon from '../component/glasses_clicked.svg';
+import SearchBarIcon from '../component/SVG/searchbar.svg';
+import FavoritelocIcon from '../component/SVG/favoriteloc.svg';
+import FavoritelocClickedIcon from '../component/SVG/favoriteloc_clicked.svg';
+import GlassesClickedIcon from '../component/SVG/glasses_clicked.svg';
 
 export default function Header({ onSearch }) {
   const [favoritelocClicked, setFavoritelocClicked] = useState(false);
