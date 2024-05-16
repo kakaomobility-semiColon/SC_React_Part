@@ -71,10 +71,11 @@
     right: 15px;
     width: 30px;
     height: 36px;
-    color: #888;
+    border: none;
     overflow: hidden;
     background-image: url('./SVG/bookmark.svg');
     background-size: contain;
+    background-color: #fff;
     background-repeat: no-repeat;
 }
 .info:after {

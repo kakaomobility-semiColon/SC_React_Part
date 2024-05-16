@@ -49,7 +49,7 @@ function Kakao() {
                                             <div class="jibun ellipsis">${data.name}는</div> 
                                             <div class="jibun ellipsis">${data.operatorName}회사에서 만든 충전기이다.</div> 
                                         </div> 
-                                        <div class="img"></div> 
+                                        <button class="img"></button> 
                                     </div> 
                                 </div> 
                             </div>`;
