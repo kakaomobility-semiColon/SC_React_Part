@@ -26,9 +26,16 @@ function Kakao() {
             var container = document.getElementById('map');
             var options = {
                 center: new window.kakao.maps.LatLng(37.336382765356035, 127.26531823399158),
-                level: 3
+                level: 3,
+                MapTypeId : window.kakao.maps.MapTypeId.ROADMAP //지도 종류
             };
             const map = new window.kakao.maps.Map(container, options);
+
+            map.addOverlayMapTypeId(window.kakao.maps.MapTypeId.TRAFFIC); //실시간 교통
+            // map.addOverlayMapTypeId(window.kakao.maps.MapTypeId.ROADVIEW); //로드뷰
+            var mapTypeControl = new window.kakao.maps.MapTypeControl(); //type controller
+            map.addControl(mapTypeControl, window.kakao.maps.ControlPosition.RIGHT);
+
 
             // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
             var zoomControl = new window.kakao.maps.ZoomControl();
