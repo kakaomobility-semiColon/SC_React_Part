@@ -12,6 +12,15 @@ function Kakao() {
                 level: 3
             };
             const map = new window.kakao.maps.Map(container, options);
+
+            map.addOverlayMapTypeId(window.kakao.maps.MapTypeId.TRAFFIC); //실시간 교통
+            // map.addOverlayMapTypeId(window.kakao.maps.MapTypeId.ROADVIEW); //로드뷰
+            var mapTypeControl = new window.kakao.maps.MapTypeControl(); //type controller
+            map.addControl(mapTypeControl, window.kakao.maps.ControlPosition.RIGHT);
+
+            // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+            var zoomControl = new window.kakao.maps.ZoomControl();
+            map.addControl(zoomControl, window.kakao.maps.ControlPosition.RIGHT);
             
             var overlays = [];
 
@@ -23,14 +32,12 @@ function Kakao() {
                                         ${data.name}  
                                     </div> 
                                     <div class="body"> 
-                                        <div class="img"> 
-                                            <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70"> 
-                                        </div> 
                                         <div class="desc"> 
                                             <div class="ellipsis">${data.address}</div> 
                                             <div class="jibun ellipsis">${data.name}는</div> 
                                             <div class="jibun ellipsis">${data.operatorName}회사에서 만든 충전기이다.</div> 
                                         </div> 
+                                        <button class="img" id="bookmarkButton"></button> 
                                     </div> 
                                 </div> 
                             </div>`;
@@ -59,6 +66,26 @@ function Kakao() {
             window.kakao.maps.event.addListener(map, "click", function () {
                 closeOverlays();
             });
+
+            function closeOverlays() {
+                overlays.forEach(function(overlay) {
+                    overlay.setMap(null); 
+                });
+            }
+
+            //지도 범위 재설정
+            var points = markerdata.map(data => new window.kakao.maps.LatLng(data.lat, data.lng));
+            var bounds = new window.kakao.maps.LatLngBounds();    
+            points.forEach(point => bounds.extend(point));
+            map.setBounds(bounds);
+
+            window.kakao.maps.event.addListener(map,'bounds_changed', function() {
+                var bound = map.getBounds();
+                var swLatlng = bound.getSouthWest();
+                var neLatlng = bound.getNorthEast();
+                console.log('<p>남서쪽 위경도 : ' + swLatlng.toString() + ',' + 
+                '북동쪽 위경도 : '+ neLatlng.toString());
+            })
         }
     }, []);
 
@@ -81,18 +108,18 @@ function Kakao() {
         };
     }, [mapscript]);
 
-    const closeOverlays = () => {
-        const overlays = document.querySelectorAll('.wrap');
-        overlays.forEach(overlay => overlay.style.display = 'none');
-        // 검색창 닫기
-        const searchBar = document.querySelector('.search-block');
-        if (searchBar) {
-            searchBar.style.display = 'none';
-        }
-    };
+    // const closeOverlays = () => {
+    //     const overlays = document.querySelectorAll('.wrap');
+    //     overlays.forEach(overlay => overlay.style.display = 'none');
+    //     // 검색창 닫기
+    //     const searchBar = document.querySelector('.search-block');
+    //     if (searchBar) {
+    //         searchBar.style.display = 'none';
+    //     }
+    // };
 
     return (
-        <div id="map" style={{ width: "1194px", height: "100vh" }}></div>
+        <div id="map" style={{ width: "100%", height: "100vh" }}></div>
     );
 }
 
