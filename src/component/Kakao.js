@@ -67,6 +67,12 @@ function Kakao() {
                 closeOverlays();
             });
 
+            function closeOverlays() {
+                overlays.forEach(function(overlay) {
+                    overlay.setMap(null); 
+                });
+            }
+
             //지도 범위 재설정
             var points = markerdata.map(data => new window.kakao.maps.LatLng(data.lat, data.lng));
             var bounds = new window.kakao.maps.LatLngBounds();    
@@ -102,15 +108,15 @@ function Kakao() {
         };
     }, [mapscript]);
 
-    const closeOverlays = () => {
-        const overlays = document.querySelectorAll('.wrap');
-        overlays.forEach(overlay => overlay.style.display = 'none');
-        // 검색창 닫기
-        const searchBar = document.querySelector('.search-block');
-        if (searchBar) {
-            searchBar.style.display = 'none';
-        }
-    };
+    // const closeOverlays = () => {
+    //     const overlays = document.querySelectorAll('.wrap');
+    //     overlays.forEach(overlay => overlay.style.display = 'none');
+    //     // 검색창 닫기
+    //     const searchBar = document.querySelector('.search-block');
+    //     if (searchBar) {
+    //         searchBar.style.display = 'none';
+    //     }
+    // };
 
     return (
         <div id="map" style={{ width: "100%", height: "100vh" }}></div>
