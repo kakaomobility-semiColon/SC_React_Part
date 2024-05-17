@@ -21,18 +21,11 @@ nav ul li button {
   padding: 0; /* 내부 여백 ~제거 */
 }
 
-.search-bar-clicked {
-  position: absolute;
-  top: 18px;
-  left: 40px;
-}
-
 .search-block {
   position: absolute;
-  padding: 10px; /* 위아래 양옆 여백 설정 */
   top: 0;
-  width: 550px;
-  height: 834px;
+  width: 435px;
+  height: 100vh;
   background-color: white;
   z-index: 999;
   border-top-right-radius: 35px;
@@ -41,56 +34,76 @@ nav ul li button {
 }
 
 .search-block .glassesclicked-icon {
-  margin-left: 10px;
-  margin-right: 5px; /* 아이콘과 입력란 사이의 간격 조절 */
+  margin-top: 2px;
+  margin-left: 15px;
 }
 
 .search-block input {
   flex: 1; /* 남은 공간을 모두 차지하도록 설정 */
-  height: 100%; /* 부모 요소의 높이에 맞게 설정 */
-  padding: 0; /* 입력란의 안쪽 여백 설정 */
-  border: none; /* 테두리 제거 */
-  border-radius: 35px; /* 꼭지점 둥글게 */
   font-size: 20px; /* 폰트 사이즈 설정 */
+  font-family: 'DoHyeon';
   background-color: transparent; /* 배경색 투명으로 설정 */
-}
-
-
-.search-block input:focus {
-  outline: none; /* 포커스시 테두리 제거 */
 }
 
 .search-block input::placeholder {
   color: #fff; /* placeholder 색상 설정 */
   font-size: 20px; /* placeholder 텍스트 사이즈 설정 */
+  font-family: 'DoHyeon-Regular';
 }
 
-.search-bar-clicked {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 550px;
-  height: 100%; /* 부모 요소의 높이에 맞게 설정 */
-  background-color: white;
-  z-index: 999;
-  border-top-right-radius: 35px;
-  border-bottom-right-radius: 35px;
-  display: flex;
-  align-items: center;
-  padding: 0 15px; /* 내부 여백 설정 */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+.searchbar_clicked {
+  margin-top: 16px;
+  margin-left: 40px;
+  width: 350px;
+  height: 44px;
 }
 
 .searchbar {
   display: flex;
   align-items: center;
-  padding: 10px;
+  width: 350px;
+  height: 44px;
   border-radius: 20px;
   background-color: #51C6EB; /* 바탕색 추가 */
 }
 
+.searchbar input::placeholder {
+  font-family: 'DoHyeon-Regular';
+  font-size: 20px;
+}
+
 .searchbar input {
+  color: #fff; /* placeholder 색상 설정 */ 
+  font-family: 'DoHyeon';
   margin-left: 10px;
   border: none;
   outline: none;
+}
+
+.searching-box {
+  margin-top: 40px;
+  padding: 10px; /* 내용물과 테두리 사이의 간격 추가 */
+  border-radius: 5px; /* 테두리의 모서리를 둥글게 */
+}
+
+.searching-item {
+  margin: 0; /* 내부 여백 제거 */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px; /* 아이템 내부 여백 추가 */
+  border: 4px solid #51C6EB; /* 개별 아이템 테두리 추가 */
+  border-radius: 15px; /* 개별 아이템 테두리의 모서리를 둥글게 */
+  text-align: left; /* 글자 왼쪽 정렬 */
+}
+
+.searching-item-name {
+  color: #238CFA; /* 글자 색상 변경 */ 
+  font-weight: 600;
+  font-size: 20px; /* 원하는 크기로 조절하세요 */
+  margin: 0 0 5px 0; /* 아래 여백 추가 */
+  padding-left: 0; /* 왼쪽 여백 제거 */
+}
+
+.searching-adress-name {
+  font-size: 20px; /* 원하는 크기로 조절하세요 */
 }
