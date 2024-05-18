@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback } from "react";
 import { markerdata } from "./Data/markerData";
-import './Kakao.css'
+import './Kakao.css';
 
 function Kakao() {
     const mapscript = useCallback(() => {
@@ -71,6 +71,11 @@ function Kakao() {
                 overlays.forEach(function(overlay) {
                     overlay.setMap(null); 
                 });
+                // 검색창 닫기
+                const searchBar = document.querySelector('.search-block');
+                if (searchBar) {
+                    searchBar.style.display = 'none';
+                }
             }
 
             //지도 범위 재설정
@@ -98,25 +103,12 @@ function Kakao() {
         script.onload = () => {
             mapscript();
         };
-        script.onerror = (error) => {
-            console.error("Error loading Kakao maps script:", error);
-        };
         document.body.appendChild(script);
 
         return () => {
             document.body.removeChild(script);
         };
     }, [mapscript]);
-
-    // const closeOverlays = () => {
-    //     const overlays = document.querySelectorAll('.wrap');
-    //     overlays.forEach(overlay => overlay.style.display = 'none');
-    //     // 검색창 닫기
-    //     const searchBar = document.querySelector('.search-block');
-    //     if (searchBar) {
-    //         searchBar.style.display = 'none';
-    //     }
-    // };
 
     return (
         <div id="map" style={{ width: "100%", height: "100vh" }}></div>
