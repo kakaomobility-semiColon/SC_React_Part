@@ -2,7 +2,6 @@ header {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
   z-index: 9999; /* 맵보다 위에 위치하도록 설정 */
 }
 
