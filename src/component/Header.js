@@ -148,7 +148,7 @@ export default function Header({ onSearch }) {
             <div className="page-bar">
               <button onClick={handleFirstPage}>«</button>
               <button onClick={handlePrevPage}>‹</button>
-              {              renderPageNumbers()}
+              {renderPageNumbers()}
               <button onClick={handleNextPage}>›</button>
               <button onClick={handleLastPage}>»</button>
             </div>
