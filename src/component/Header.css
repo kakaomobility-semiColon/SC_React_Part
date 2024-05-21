@@ -60,7 +60,7 @@ nav ul li button {
 .searchbar {
   display: flex;
   align-items: center;
-  width: 350px;
+  width: 345px;
   height: 44px;
   border-radius: 20px;
   background-color: #51C6EB; /* 바탕색 추가 */

@@ -15,7 +15,9 @@ export default function Header({ onSearch }) {
   const [isSearching, setIsSearching] = useState(false);
   const [noResults, setNoResults] = useState(false); // 검색 결과가 없음을 나타내는 상태
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10; // 전체 페이지 수
+  const resultsPerPage = 4; // 페이지당 표시할 결과 수
+
+  const totalPages = Math.ceil(searchResults.length / resultsPerPage); // 전체 페이지 수 계산
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
@@ -99,6 +101,7 @@ export default function Header({ onSearch }) {
 
     setSearchKeyword(''); // 검색어 초기화
     setIsSearching(false); // 검색 상태 초기화
+    setCurrentPage(1); // 검색 후 페이지를 1로 초기화
   };
 
   // 컴포넌트 렌더링
@@ -135,7 +138,7 @@ export default function Header({ onSearch }) {
               {!isSearching && noResults && (
                 <div>검색 결과가 없습니다.</div>
               )}
-              {!isSearching && searchResults.map((item, index) => (
+              {!isSearching && searchResults.slice((currentPage - 1) * resultsPerPage, currentPage * resultsPerPage).map((item, index) => (
                 <div key={index} className="searching-item">
                   <p className="searching-item-name">{item.name}</p>
                   <p className="searching-item-address">{item.address}</p>
@@ -145,7 +148,7 @@ export default function Header({ onSearch }) {
             <div className="page-bar">
               <button onClick={handleFirstPage}>«</button>
               <button onClick={handlePrevPage}>‹</button>
-              {renderPageNumbers()}
+              {              renderPageNumbers()}
               <button onClick={handleNextPage}>›</button>
               <button onClick={handleLastPage}>»</button>
             </div>
@@ -155,3 +158,4 @@ export default function Header({ onSearch }) {
     </header>
   );
 }
+
