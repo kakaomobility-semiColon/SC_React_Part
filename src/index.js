@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App.js';
 import reportWebVitals from './reportWebVitals';
+import './asset/fonts/KakaoRegular.ttf'
 
 console.log('Server URL:', process.env.REACT_APP_SERVER_URL); // 환경 변수 출력
 
