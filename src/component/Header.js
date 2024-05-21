@@ -153,9 +153,8 @@ export default function Header({ onSearch }) {
               <button onClick={handleLastPage}>»</button>
             </div>
           </div>
-        </div>
-      </div>
+        </div> {/* 이 줄에 닫는 div 추가 */}
+      </div> {/* 이 줄에 닫는 div 추가 */}
     </header>
   );
 }
-
