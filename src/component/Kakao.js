@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from "react";
 import { markerdata } from "./Data/markerData";
-import './Kakao.css';
+import './Kakao.css'
+import axios from "axios";
 
 function Kakao() {
     const mapscript = useCallback(() => {
@@ -84,13 +85,24 @@ function Kakao() {
             points.forEach(point => bounds.extend(point));
             map.setBounds(bounds);
 
-            window.kakao.maps.event.addListener(map,'bounds_changed', function() {
+            window.kakao.maps.event.addListener(map,'idle', function() {
                 var bound = map.getBounds();
                 var swLatlng = bound.getSouthWest();
                 var neLatlng = bound.getNorthEast();
+                
                 console.log('<p>남서쪽 위경도 : ' + swLatlng.toString() + ',' + 
                 '북동쪽 위경도 : '+ neLatlng.toString());
-            })
+
+                //서버에 GET 요청
+                const url = `${process.env.REACT_APP_SERVER_URL}/charger/search/marker?swLat=${swLatlng.getLat()}&swLng=${swLatlng.getLng()}&neLat=${neLatlng.getLat()}&neLng=${neLatlng.getLng()}`;
+                axios.get(url)
+                .then(response => {
+                    console.log('서버 응답', response.data);
+                })
+                .catch(error => {
+                    console.log('GET 요청 에러', error);
+                });
+            });
         }
     }, []);
 

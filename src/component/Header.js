@@ -23,7 +23,7 @@ export default function Header({ onSearch }) {
     onSearch(searchKeyword);
 
     try {
-      const response = await fetch(`http://3.39.218.10:8080/charger/${searchKeyword}/detail`);
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/charger/${searchKeyword}/detail`);
       const data = await response.json();
       setSearchResults(Array.isArray(data) ? data : [data]); // 응답이 배열인지 확인 후 설정
     } catch (error) {
