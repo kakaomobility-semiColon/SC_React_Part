@@ -4,8 +4,6 @@ import Kakao from './component/Kakao';
 import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 
-console.log('Server URL:', process.env.REACT_APP_SERVER_URL);
-
 function App() {
   const [searching, setSearching] = useState(false);
   const [items, setItems] = useState([]);

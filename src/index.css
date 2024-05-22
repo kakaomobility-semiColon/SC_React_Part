@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'KakaoRegular', sans-serif;
   font-weight: normal;
-  src: url("./asset/fonts/KakaoRegular.ttf") format("truetype");
+  src: url("./component/fonts/KakaoRegular.ttf") format("truetype");
 }
 
 body {
