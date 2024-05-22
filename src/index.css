@@ -1,17 +1,17 @@
 @font-face {
-  font-family: "DoHyeon-Regular";
+  font-family: 'KakaoRegular', sans-serif;
   font-weight: normal;
-  src: url("./fonts/DoHyeon-Regular.ttf") format("truetype");
+  src: url("./component/fonts/KakaoRegular.ttf") format("truetype");
 }
 
 body {
   margin: 0;
-  font-family: "DoHyeon-Regular", sans-serif;
+  font-family: 'KakaoRegular', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: 'KakaoRegular', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
