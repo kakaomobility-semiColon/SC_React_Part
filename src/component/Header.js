@@ -54,6 +54,11 @@ export default function Header({ onSearch }) {
     return pages;
   };
 
+  // 검색바 토글 기능
+  const toggleSearchBar = () => {
+    setSearchBarClicked(!searchBarClicked);
+  };
+
   // 즐겨찾기 위치 버튼 토글 기능
   const toggleBookmark = () => {
     setBookmarkClicked(!bookmarkClicked);
@@ -102,16 +107,6 @@ export default function Header({ onSearch }) {
     }
   };
 
-  // 마우스가 영역에 들어올 때 검색창 표시
-  const handleMouseEnter = () => {
-    setSearchBarClicked(true);
-  };
-
-  // 마우스가 영역에서 벗어날 때 검색창 숨김
-  const handleMouseLeave = () => {
-    setSearchBarClicked(false);
-  };
-
   // 컴포넌트 렌더링
   return (
     <header>
@@ -119,7 +114,7 @@ export default function Header({ onSearch }) {
         <nav>
           <ul>
             <li>
-              <img src={SearchBarIcon} alt="SearchBar" onMouseEnter={handleMouseEnter} />
+              <img src={SearchBarIcon} alt="SearchBar" onClick={toggleSearchBar} />
             </li>
             <li>
               <button className={`bookmark-button ${bookmarkClicked ? 'active' : ''}`} onClick={toggleBookmark}>
@@ -128,7 +123,7 @@ export default function Header({ onSearch }) {
             </li>
           </ul>
         </nav>
-        <div className="search-block" style={{ display: searchBarClicked ? 'block' : 'none' }} onMouseLeave={handleMouseLeave}>
+        <div className="search-block" style={{ display: searchBarClicked ? 'block' : 'none' }}>
           <div className="searchbar_clicked">
             <div className="searchbar">
               <img src={GlassesClickedIcon} alt="Search" className="glassesclicked-icon" onClick={handleSearch} />
@@ -138,7 +133,6 @@ export default function Header({ onSearch }) {
                 name="search-input" // 고유한 name 속성 추가
                 placeholder="장소, 위치, 대중교통 검색"
                 value={searchKeyword}
-                onFocus={() => setSearchBarClicked(true)} // 입력란에 포커스를 줄 때 검색창 표시
                 onChange={(e) => setSearchKeyword(e.target.value)}
                 onKeyDown={handleKeyDown} // onKeyDown 이벤트 핸들러 추가
               />
