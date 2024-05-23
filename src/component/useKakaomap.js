@@ -96,13 +96,6 @@ export const useKakaomap = () => {
       window.kakao.maps.event.addListener(map, 'click', function () {
         closeOverlays();
       });
-      
-      // 마우스가 영역에 들어올 때 search-block 표시
-      container.addEventListener('mouseenter', function () {
-        if (searchBar) {
-          searchBar.style.display = 'block';
-        }
-      });
 
 // Resize handle 추가
 const searchBar = document.querySelector('.search-block');
