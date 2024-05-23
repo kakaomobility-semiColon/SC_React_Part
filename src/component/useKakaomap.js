@@ -21,11 +21,16 @@ export const useKakaomap = () => {
 
       function closeOverlays() {
         overlays.forEach(function(overlay) {
-          overlay.setMap(null); 
+          overlay.setMap(null);
         });
+
         const searchBar = document.querySelector('.search-block');
         if (searchBar) {
-          searchBar.style.display = 'none';
+          searchBar.classList.add('fade-out');
+          setTimeout(() => {
+            searchBar.style.display = 'none';
+            searchBar.classList.remove('fade-out');
+          }, 500); // 애니메이션 지속 시간과 동일하게 설정
         }
       }
 
@@ -88,9 +93,49 @@ export const useKakaomap = () => {
       });
 
       // 지도 클릭 시 오버레이와 검색 블록을 닫는 이벤트 리스너 추가
-      window.kakao.maps.event.addListener(map, "click", function () {
+      window.kakao.maps.event.addListener(map, 'click', function () {
         closeOverlays();
       });
+      
+      // 마우스가 영역에 들어올 때 search-block 표시
+      container.addEventListener('mouseenter', function () {
+        if (searchBar) {
+          searchBar.style.display = 'block';
+        }
+      });
+
+// Resize handle 추가
+const searchBar = document.querySelector('.search-block');
+if (searchBar) {
+  const resizeHandle = document.createElement('div');
+  resizeHandle.className = 'resize-handle';
+  searchBar.appendChild(resizeHandle);
+
+  let isResizing = false;
+  let startX = 0;
+  let startWidth = 0;
+
+  resizeHandle.addEventListener('mousedown', (e) => {
+    isResizing = true;
+    startX = e.clientX;
+    startWidth = searchBar.offsetWidth;
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  });
+
+  function onMouseMove(e) {
+    if (!isResizing) return;
+    const newWidth = startWidth + (e.clientX - startX);
+    if (newWidth < 435) return; // 최소 너비 설정
+    searchBar.style.width = `${newWidth}px`;
+  }
+
+  function onMouseUp() {
+    isResizing = false;
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+  }
+}
     }
   }, []);
 };
