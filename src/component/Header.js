@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Header.css'; // 스타일시트 임포트
 import SearchBarIcon from '../component/SVG/searchbar.svg'; // 검색바 아이콘
-import FavoritelocIcon from '../component/SVG/favoriteloc.svg'; // 즐겨찾기 위치 아이콘
-import FavoritelocClickedIcon from '../component/SVG/favoriteloc_clicked.svg'; // 클릭된 즐겨찾기 위치 아이콘
 import GlassesClickedIcon from '../component/SVG/glasses_clicked.svg'; // 클릭된 검색 아이콘
 
 export default function Header({ onSearch }) {
   // 여러 상태 관리를 위한 useState 훅 사용
-  const [favoritelocClicked, setFavoritelocClicked] = useState(false);
+  const [bookmarkClicked, setBookmarkClicked] = useState(false);
   const [searchBarClicked, setSearchBarClicked] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -57,13 +55,8 @@ export default function Header({ onSearch }) {
   };
 
   // 즐겨찾기 위치 버튼 토글 기능
-  const toggleFavoriteloc = () => {
-    setFavoritelocClicked(!favoritelocClicked);
-  };
-
-  // 검색바 토글 기능
-  const toggleSearchBar = () => {
-    setSearchBarClicked(!searchBarClicked);
+  const toggleBookmark = () => {
+    setBookmarkClicked(!bookmarkClicked);
   };
 
   // 검색 처리 기능
@@ -99,9 +92,24 @@ export default function Header({ onSearch }) {
       setNoResults(true); // 오류 발생 시 검색 결과 없음 상태로 설정
     }
 
-    setSearchKeyword(''); // 검색어 초기화
-    setIsSearching(false); // 검색 상태 초기화
-    setCurrentPage(1); // 검색 후 페이지를 1로 초기화
+  setIsSearching(false); // 검색 상태 초기화
+  setCurrentPage(1); // 검색 후 페이지를 1로 초기화
+};
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+  // 마우스가 영역에 들어올 때 검색창 표시
+  const handleMouseEnter = () => {
+    setSearchBarClicked(true);
+  };
+
+  // 마우스가 영역에서 벗어날 때 검색창 숨김
+  const handleMouseLeave = () => {
+    setSearchBarClicked(false);
   };
 
   // 컴포넌트 렌더링
@@ -111,16 +119,16 @@ export default function Header({ onSearch }) {
         <nav>
           <ul>
             <li>
-              <img src={SearchBarIcon} alt="SearchBar" onClick={toggleSearchBar} />
+              <img src={SearchBarIcon} alt="SearchBar" onMouseEnter={handleMouseEnter} />
             </li>
             <li>
-              <button className="favorite-loc-button" onClick={toggleFavoriteloc}>
-                <img src={favoritelocClicked ? FavoritelocClickedIcon : FavoritelocIcon} alt="Favoriteloc" />
+              <button className={`bookmark-button ${bookmarkClicked ? 'active' : ''}`} onClick={toggleBookmark}>
+                <div className="bookmark-icon">북마크</div>
               </button>
             </li>
           </ul>
         </nav>
-        <div className="search-block" style={{ display: searchBarClicked ? 'block' : 'none' }}>
+        <div className="search-block" style={{ display: searchBarClicked ? 'block' : 'none' }} onMouseLeave={handleMouseLeave}>
           <div className="searchbar_clicked">
             <div className="searchbar">
               <img src={GlassesClickedIcon} alt="Search" className="glassesclicked-icon" onClick={handleSearch} />
@@ -130,7 +138,9 @@ export default function Header({ onSearch }) {
                 name="search-input" // 고유한 name 속성 추가
                 placeholder="장소, 위치, 대중교통 검색"
                 value={searchKeyword}
+                onFocus={() => setSearchBarClicked(true)} // 입력란에 포커스를 줄 때 검색창 표시
                 onChange={(e) => setSearchKeyword(e.target.value)}
+                onKeyDown={handleKeyDown} // onKeyDown 이벤트 핸들러 추가
               />
             </div>
             <div className="searching-box">
@@ -153,8 +163,8 @@ export default function Header({ onSearch }) {
               <button onClick={handleLastPage}>»</button>
             </div>
           </div>
-        </div> {/* 이 줄에 닫는 div 추가 */}
-      </div> {/* 이 줄에 닫는 div 추가 */}
+        </div>
+      </div>
     </header>
   );
 }

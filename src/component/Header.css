@@ -1,3 +1,26 @@
+.bookmark-button {
+  border: none;
+  border-radius: 20px;
+  background-color: white;
+  cursor: pointer;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3); /* 그림자 추가 */
+  font-size: 20px; /* 원하는 크기로 조절하세요 */
+  font-weight: 600; /* semibold 효과 */
+}
+
+.bookmark-button.active {
+  background-color: #51C6EB;
+  color: white;
+}
+
+.bookmark-icon {
+  width: 122px; /* 네모 박스의 가로 크기 */
+  height: 45px; /* 네모 박스의 세로 크기 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 header {
   position: absolute;
   top: 0;
@@ -17,19 +40,50 @@ nav ul li {
 nav ul li button {
   border: none; /* 테두리 제거 */
   background: none; /* 배경색 제거 */
-  padding: 0; /* 내부 여백 ~제거 */
+  padding: 0; /* 내부 여백 제거 */
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
 }
 
 .search-block {
   position: absolute;
   top: 0;
   width: 435px;
+  min-width: 435px;
   height: 100vh;
   background-color: white;
   z-index: 999;
   border-top-right-radius: 35px;
   border-bottom-right-radius: 35px;
   display: flex;
+  box-shadow: 0px 0px 10px rgb(35, 35, 35);
+  transition: opacity 1s, transform 1s;
+  overflow: hidden;
+  resize: horizontal; /* 수평 크기 조정 활성화 */
+}
+
+.resize-handle {
+  width: 10px;
+  height: 80px;
+  cursor: ew-resize; /* 좌우 크기 조정 커서 */
+  background-color: #ccc;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%); /* 수직으로 정확히 중앙으로 이동 */
+}
+
+.search-block.fade-out {
+  animation: fadeOut 0.5s forwards;
 }
 
 .search-block .glassesclicked-icon {
@@ -39,13 +93,14 @@ nav ul li button {
 
 .search-block input {
   flex: 1; /* 남은 공간을 모두 차지하도록 설정 */
-  font-size: 20px; /* 폰트 사이즈 설정 */
+  font-size: 18px; /* 폰트 사이즈 설정 */
+  margin-bottom: 4px;
   background-color: transparent; /* 배경색 투명으로 설정 */
 }
 
 .search-block input::placeholder {
   color: #fff; /* placeholder 색상 설정 */
-  font-size: 20px; /* placeholder 텍스트 사이즈 설정 */
+  font-size: 18px; /* placeholder 텍스트 사이즈 설정 */
 }
 
 .searchbar_clicked {
@@ -53,7 +108,7 @@ nav ul li button {
   margin-left: 40px;
   width: 350px;
   height: 44px;
-}
+} 
 
 .searchbar {
   display: flex;
@@ -65,40 +120,73 @@ nav ul li button {
 }
 
 .searchbar input::placeholder {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .searchbar input {
   color: #fff; /* placeholder 색상 설정 */ 
-  margin-left: 10px;
+  margin-top: 5px;
+  margin-left: 8px;
   border: none;
   outline: none;
+  font-weight: 600; /* semibold 효과 */
 }
 
 .searching-box {
   padding: 10px; /* 내용물과 테두리 사이의 간격 추가 */
-  border-radius: 5px; /* 테두리의 모서리를 둥글게 */
 }
 
 .searching-item {
   margin: 0; /* 내부 여백 제거 */
-  margin-top: 20px;
+  margin-top: 15px;
   margin-bottom: 20px;
   padding: 10px; /* 아이템 내부 여백 추가 */
-  border: 2px solid #51C6EB; /* 개별 아이템 테두리 추가 */
-  border-radius: 15px; /* 개별 아이템 테두리의 모서리를 둥글게 */
-  box-shadow: 2px 2px 2px 2px #828282;
+  border-bottom: 2px solid #D9D9D9; /* 하단에 선 추가 */
   text-align: left; /* 글자 왼쪽 정렬 */
 }
 
 .searching-item-name {
-  color: #238CFA; /* 글자 색상 변경 */ 
-  font-weight: 550;
+  font-weight: 600; /* semibold 효과 */
   font-size: 20px; /* 원하는 크기로 조절하세요 */
   margin: 0 0 5px 0; /* 아래 여백 추가 */
   padding-left: 0; /* 왼쪽 여백 제거 */
 }
 
-.searching-adress-name {
-  font-size: 20px; /* 원하는 크기로 조절하세요 */
+.searching-item-address {
+  color: #374957; /* 글자 색상 변경 */ 
+  font-size: 15px; /* 원하는 크기로 조절하세요 */
+  margin-bottom: 20px;
+}
+
+.page-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  height: 20px; /* 높이 조정 */
+}
+
+.page-bar button {
+  background-color: #D9D9D9; /* 기본 색상 */
+  border: none;
+  color: white;
+  margin: 0 0.5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s;
+  min-width: 25px; /* 최소 너비 설정 */
+  min-height: 25px; /* 최소 높이 설정 */
+  text-align: center; /* 텍스트를 가운데 정렬 */
+  display: flex; /* 버튼 요소를 flex로 설정 */
+  justify-content: center; /* 텍스트를 수평으로 가운데 정렬 */
+  align-items: center; /* 텍스트를 세로로 가운데 정렬 */
+}
+
+.page-bar button:hover {
+  background-color: #51C6EB; /* hover 색상 */
+}
+
+.page-bar button.active {
+  background-color: #51C6EB; /* 현재 페이지 버튼 색상 */
 }
