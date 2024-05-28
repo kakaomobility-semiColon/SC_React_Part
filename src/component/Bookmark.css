@@ -42,7 +42,7 @@
     }
   }
   .bookmark-block.fade-out {
-    animation: fadeOut 0.5s forwards;
+    animation: fadeOut 0.5s backwards;
   }
   
   .bookmark-button.active .bookmark-icon {
@@ -73,8 +73,8 @@
   .bookmark-close:hover {
     color: #51C6EB; /* 닫기 버튼을 호버할 때 색상 변경 */
     background-color: #fff;
-    padding-left: 20px;
-    padding-right: 20px;
+    width: 122px;
+    height: 45px;
     border-radius: 20px;
   }
   

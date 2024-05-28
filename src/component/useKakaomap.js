@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import axios from 'axios';
-import { createMarkerContent, handleBookmarkClick } from './markerContents';
+import { createMarkerContent} from './markerContents';
 
 export const useKakaomap = () => {
   return useCallback(() => {
@@ -51,7 +51,7 @@ export const useKakaomap = () => {
 
           markerData.forEach((data) => {
             const position = new window.kakao.maps.LatLng(data.lat, data.lng);
-            const content = createMarkerContent(data, handleBookmarkClick);
+            const content = createMarkerContent(data);
 
             const marker = new window.kakao.maps.Marker({
               position: position,
@@ -67,6 +67,11 @@ export const useKakaomap = () => {
             window.kakao.maps.event.addListener(marker, 'click', function() {
               closeOverlays();
               overlay.setMap(map);
+
+              // Prevent overlay click event from propagating to the map
+              content.addEventListener('click', (e) => {
+                e.stopPropagation();
+              });
             });
 
             overlays.push(overlay);
