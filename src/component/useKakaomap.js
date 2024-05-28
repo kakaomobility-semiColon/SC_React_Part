@@ -1,5 +1,6 @@
-import { useCallback } from "react";
-import axios from "axios";
+import { useCallback } from 'react';
+import axios from 'axios';
+import { createMarkerContent, handleBookmarkClick } from './markerContents';
 
 export const useKakaomap = () => {
   return useCallback(() => {
@@ -20,7 +21,7 @@ export const useKakaomap = () => {
       const overlays = [];
 
       function closeOverlays() {
-        overlays.forEach(function(overlay) {
+        overlays.forEach((overlay) => {
           overlay.setMap(null);
         });
 
@@ -30,7 +31,7 @@ export const useKakaomap = () => {
           setTimeout(() => {
             searchBar.style.display = 'none';
             searchBar.classList.remove('fade-out');
-          }, 500); // 애니메이션 지속 시간과 동일하게 설정
+          }, 500);
         }
       }
 
@@ -46,26 +47,11 @@ export const useKakaomap = () => {
 
         try {
           const response = await axios.get(url);
-          const markerData = response.data.result; // 서버 응답에서 마커 데이터 가져오기
-          
-          // 마커 데이터를 바탕으로 지도에 마커 추가
+          const markerData = response.data.result;
+
           markerData.forEach((data) => {
             const position = new window.kakao.maps.LatLng(data.lat, data.lng);
-            const content = `<div class="wrap"> 
-                              <div class="info"> 
-                                  <div class="title"> 
-                                      ${data.name}  
-                                  </div> 
-                                  <div class="body"> 
-                                      <div class="desc"> 
-                                          <div class="ellipsis">${data.address}</div> 
-                                          <div class="jibun ellipsis">${data.name}는</div> 
-                                          <div class="jibun ellipsis">${data.operatorName}회사에서 만든 충전기이다.</div> 
-                                      </div> 
-                                      <button class="img" id="bookmarkButton"></button> 
-                                  </div> 
-                              </div> 
-                          </div>`;
+            const content = createMarkerContent(data, handleBookmarkClick);
 
             const marker = new window.kakao.maps.Marker({
               position: position,
@@ -78,7 +64,7 @@ export const useKakaomap = () => {
               yAnchor: 1
             });
 
-            window.kakao.maps.event.addListener(marker, "click", function () {
+            window.kakao.maps.event.addListener(marker, 'click', function() {
               closeOverlays();
               overlay.setMap(map);
             });
@@ -92,43 +78,41 @@ export const useKakaomap = () => {
         }
       });
 
-      // 지도 클릭 시 오버레이와 검색 블록을 닫는 이벤트 리스너 추가
-      window.kakao.maps.event.addListener(map, 'click', function () {
+      window.kakao.maps.event.addListener(map, 'click', function() {
         closeOverlays();
       });
 
-// Resize handle 추가
-const searchBar = document.querySelector('.search-block');
-if (searchBar) {
-  const resizeHandle = document.createElement('div');
-  resizeHandle.className = 'resize-handle';
-  searchBar.appendChild(resizeHandle);
+      const searchBar = document.querySelector('.search-block');
+      if (searchBar) {
+        const resizeHandle = document.createElement('div');
+        resizeHandle.className = 'resize-handle';
+        searchBar.appendChild(resizeHandle);
 
-  let isResizing = false;
-  let startX = 0;
-  let startWidth = 0;
+        let isResizing = false;
+        let startX = 0;
+        let startWidth = 0;
 
-  resizeHandle.addEventListener('mousedown', (e) => {
-    isResizing = true;
-    startX = e.clientX;
-    startWidth = searchBar.offsetWidth;
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
-  });
+        resizeHandle.addEventListener('mousedown', (e) => {
+          isResizing = true;
+          startX = e.clientX;
+          startWidth = searchBar.offsetWidth;
+          document.addEventListener('mousemove', onMouseMove);
+          document.addEventListener('mouseup', onMouseUp);
+        });
 
-  function onMouseMove(e) {
-    if (!isResizing) return;
-    const newWidth = startWidth + (e.clientX - startX);
-    if (newWidth < 435) return; // 최소 너비 설정
-    searchBar.style.width = `${newWidth}px`;
-  }
+        function onMouseMove(e) {
+          if (!isResizing) return;
+          const newWidth = startWidth + (e.clientX - startX);
+          if (newWidth < 435) return;
+          searchBar.style.width = `${newWidth}px`;
+        }
 
-  function onMouseUp() {
-    isResizing = false;
-    document.removeEventListener('mousemove', onMouseMove);
-    document.removeEventListener('mouseup', onMouseUp);
-  }
-}
+        function onMouseUp() {
+          isResizing = false;
+          document.removeEventListener('mousemove', onMouseMove);
+          document.removeEventListener('mouseup', onMouseUp);
+        }
+      }
     }
   }, []);
 };

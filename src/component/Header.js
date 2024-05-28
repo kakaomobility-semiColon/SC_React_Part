@@ -3,11 +3,11 @@ import axios from 'axios';
 import './Header.css'; // 스타일시트 임포트
 import SearchBarIcon from '../component/SVG/searchbar.svg'; // 검색바 아이콘
 import GlassesClickedIcon from '../component/SVG/glasses_clicked.svg'; // 클릭된 검색 아이콘
+import { BookmarkButton, BookmarkBlock } from './BookmarkList'; // 북마크 컴포넌트 임포트
 
 export default function Header({ onSearch }) {
-  // 여러 상태 관리를 위한 useState 훅 사용
-  const [bookmarkClicked, setBookmarkClicked] = useState(false);
   const [searchBarClicked, setSearchBarClicked] = useState(false);
+  const [bookmarkClicked, setBookmarkClicked] = useState(false); // 북마크 상태 추가
   const [searchKeyword, setSearchKeyword] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -59,7 +59,7 @@ export default function Header({ onSearch }) {
     setSearchBarClicked(!searchBarClicked);
   };
 
-  // 즐겨찾기 위치 버튼 토글 기능
+  // 북마크 토글 기능
   const toggleBookmark = () => {
     setBookmarkClicked(!bookmarkClicked);
   };
@@ -97,9 +97,9 @@ export default function Header({ onSearch }) {
       setNoResults(true); // 오류 발생 시 검색 결과 없음 상태로 설정
     }
 
-  setIsSearching(false); // 검색 상태 초기화
-  setCurrentPage(1); // 검색 후 페이지를 1로 초기화
-};
+    setIsSearching(false); // 검색 상태 초기화
+    setCurrentPage(1); // 검색 후 페이지를 1로 초기화
+  };
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -117,9 +117,7 @@ export default function Header({ onSearch }) {
               <img src={SearchBarIcon} alt="SearchBar" onClick={toggleSearchBar} />
             </li>
             <li>
-              <button className={`bookmark-button ${bookmarkClicked ? 'active' : ''}`} onClick={toggleBookmark}>
-                <div className="bookmark-icon">북마크</div>
-              </button>
+              <BookmarkButton onClick={toggleBookmark} active={bookmarkClicked} /> {/* 북마크 버튼 */}
             </li>
           </ul>
         </nav>
@@ -158,6 +156,7 @@ export default function Header({ onSearch }) {
             </div>
           </div>
         </div>
+        <BookmarkBlock active={bookmarkClicked} onClose={toggleBookmark} /> {/* 북마크 바 */}
       </div>
     </header>
   );
