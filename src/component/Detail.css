@@ -1,0 +1,76 @@
+.detail-block {
+    position: absolute;
+    top: 0;
+    width: 435px;
+    min-width: 435px;
+    height: 100vh;
+    background-color: white;
+    z-index: 999;
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 35px;
+    display: flex;
+    box-shadow: 0px 0px 10px rgb(35, 35, 35);
+    transition: opacity 1s, transform 1s;
+    overflow: hidden;
+    resize: horizontal; /* 수평 크기 조정 활성화 */
+}
+
+.detail-close {
+    display:inline-block;
+    font-size: 30px;
+    color: #51C6EB;
+    background-color: #fff;
+    border-radius: 10px; 
+    border: none;
+    border-color: #51C6EB;
+    padding: 7px 20px; 
+    cursor: pointer; 
+}
+
+.detail-close::after{
+    display: inline-block;
+    content: "\00d7"; 
+    font-size: 36px;
+}
+
+.detail-close:hover {
+    color: #fff;
+    background-color: #51C6EB;
+}
+
+.detail {
+    margin: 0; /* 내부 여백 제거 */
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding: 10px; /* 아이템 내부 여백 추가 */
+    border-bottom: 2px solid #D9D9D9; /* 하단에 선 추가 */
+    text-align: left; /* 글자 왼쪽 정렬 */
+}
+
+#detail-img{
+    margin-top: 20px;
+    border-radius: 20px;
+    width: 415.5px;
+}
+
+h1{
+    font-size: 29px;
+}
+
+.detial-icon {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.detial-icon span{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#update {
+    color: gray;
+    font-size: smaller;
+}

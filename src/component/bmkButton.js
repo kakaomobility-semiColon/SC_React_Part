@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+// bmkButton.js
+import React, { useState, useEffect } from 'react';
 import './Bookmark.css';
 
 export function BookmarkButton({ id }) {
-  const [isBookmarked, setIsBookmarked] = useState(() => {
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
+  useEffect(() => {
     const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
-    return bookmarks.includes(id);
-  });
+    setIsBookmarked(bookmarks.includes(id));
+  }, [id]);
 
   const handleBookmarkClick = () => {
     const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];

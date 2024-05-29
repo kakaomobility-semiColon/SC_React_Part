@@ -11,6 +11,7 @@ export const useKakaomap = () => {
         level: 3
       };
       const map = new window.kakao.maps.Map(container, options);
+      map.setMaxLevel(5);
 
       map.addOverlayMapTypeId(window.kakao.maps.MapTypeId.TRAFFIC);
       const mapTypeControl = new window.kakao.maps.MapTypeControl();

@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Header from './component/Header';
 import Kakao from './component/Kakao';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { dummyData } from './component/dummyData';
 import './App.css';
 
 function App() {
   const [searching, setSearching] = useState(false);
   const [items, setItems] = useState([]);
+  const { stationChargerId, name, address, operatorName, output } = dummyData.result;
 
   useEffect(() => {
     if (searching) {
@@ -15,6 +17,7 @@ function App() {
       // 여기에서는 임시로 setTimeout을 사용하여 1초 후에 검색이 완료되었다고 가정하겠습니다.
       setTimeout(() => {
         setItems(['item1', 'item2', 'item3']); // 임시로 데이터 설정
+        setSearching(false);
       }, 1000);
     }
   }, [searching]);

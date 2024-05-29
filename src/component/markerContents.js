@@ -37,10 +37,10 @@ export const createMarkerContent = (data) => {
   operatorName.textContent = `회사명 : ${data.operatorName}`;
   desc.appendChild(operatorName);
 
-  const outputName = document.createElement('div');
-  outputName.className = 'jibun ellipsis';
-  outputName.textContent = `충전용량 : ${data.outputName}`;
-  desc.appendChild(outputName);
+  const output = document.createElement('div');
+  output.className = 'jibun ellipsis';
+  output.textContent = `충전용량 : ${data.output}`;
+  desc.appendChild(output);
 
   return wrap;
 };
