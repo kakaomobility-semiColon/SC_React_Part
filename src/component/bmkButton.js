@@ -1,4 +1,3 @@
-// bmkButton.js
 import React, { useState, useEffect } from 'react';
 import './Bookmark.css';
 
@@ -30,7 +29,7 @@ export function BookmarkButton({ id }) {
       onClick={handleBookmarkClick}
     >
       <div className="bookmark-icon">
-        <img src={isBookmarked ? 'bookmark_clicked.svg' : 'bookmark.svg'} alt="bookmark" />
+        <img src={isBookmarked ? './SVG/bookmark_clicked.svg' : './SVG/bookmark.svg'} alt="bookmark" />
       </div>
     </button>
   );
