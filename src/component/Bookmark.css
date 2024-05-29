@@ -1,0 +1,85 @@
+/* 북마크 바 스타일 */
+.bookmark-block {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    left: 0;
+    width: 435px; /* 북마크 창 너비 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    display: none;
+    margin: 0;
+    background-color: white;
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 35px;
+    box-shadow: 0px 0px 10px rgb(35, 35, 35);
+    transition: opacity 1s, transform 1s;
+    overflow: hidden;
+    resize: horizontal;
+  }
+  
+  .bookmark-block.active {
+    display: block;
+    animation: slide-in 0.3s forwards;
+  }
+  
+  @keyframes slide-in {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+  }
+  .bookmark-block.fade-out {
+    animation: fadeOut 0.5s backwards;
+  }
+  
+  .bookmark-button.active .bookmark-icon {
+    color: #fff; /* 북마크 버튼이 활성화되었을 때 색상 */
+  }
+  
+  .bookmark-close {
+    margin-top: 15px;
+    margin-left: 10px;
+    padding: 10px;
+    width: 122px;
+    height: 45px;
+
+    display: flex;
+    align-self: flex-start; /* 닫기 버튼을 오른쪽 위로 위치 */
+    justify-content: center;
+    background: none;
+    border: none;
+
+    color: #fff;
+    background-color: #51C6EB;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .bookmark-close:hover {
+    color: #51C6EB; /* 닫기 버튼을 호버할 때 색상 변경 */
+    background-color: #fff;
+    width: 122px;
+    height: 45px;
+    border-radius: 20px;
+  }
+  
+  .bookmark-items {
+    flex: 1; /* 북마크 아이템들이 남은 공간을 채우도록 설정 */
+    overflow-y: auto; /* 내용이 길어질 경우 스크롤 가능 */
+  }
+  
