@@ -65,19 +65,6 @@
     color: #888;
     margin-top: -2px;
 }
-.info .bookmark-button {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    width: 30px;
-    height: 36px;
-    border: none;
-    overflow: hidden;
-    background-image: url('./SVG/bookmark.svg');
-    background-size: contain;
-    background-color: #fff;
-    background-repeat: no-repeat;
-}
 .info:after {
     content: '';
     position: absolute;
