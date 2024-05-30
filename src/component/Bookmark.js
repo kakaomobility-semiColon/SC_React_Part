@@ -15,22 +15,22 @@ export function OpenBookmarkList({ id, onClick, active }) {
 }
 
 //detail.js에 있는 북마크 추가하는 버튼
-export function AddBookmarkButton({ id }) {
+export function AddBookmarkButton({ stationChargerId, name, address }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
     const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
-    setIsBookmarked(bookmarks.includes(id));
-  }, [id]);
+    setIsBookmarked(bookmarks.includes(bookmark => bookmark.id === stationChargerId));
+  }, [stationChargerId]);
 
   const handleAddBookmark = () => {
     const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
     let updatedBookmarks;
 
     if (isBookmarked) {
-      updatedBookmarks = bookmarks.filter(bookmark => bookmark !== id);
+      updatedBookmarks = bookmarks.filter(bookmark => bookmark !== stationChargerId);
     } else {
-      updatedBookmarks = [...bookmarks, id];
+      updatedBookmarks = [...bookmarks, { id: stationChargerId, name, address }];
     }
 
     localStorage.setItem('bookmarks', JSON.stringify(updatedBookmarks));
@@ -47,6 +47,7 @@ export function AddBookmarkButton({ id }) {
 }
 
 //bookmarklist에 있는 block
+//bookmarklist에 있는 block
 export function BookmarkList({ active, onClose }) {
   const [bookmarks, setBookmarks] = useState([]);
 
@@ -56,7 +57,7 @@ export function BookmarkList({ active, onClose }) {
   }, []);
 
   const handleRemoveBookmark = (id) => {
-    const updatedBookmarks = bookmarks.filter(bookmark => bookmark !== id);
+    const updatedBookmarks = bookmarks.filter(bookmark => bookmark.id !== id);
     setBookmarks(updatedBookmarks);
     localStorage.setItem('bookmarks', JSON.stringify(updatedBookmarks));
   };
@@ -68,8 +69,9 @@ export function BookmarkList({ active, onClose }) {
         <ul>
           {bookmarks.map((bookmark, index) => (
             <li key={index}>
-              {bookmark} 
-              <button onClick={() => handleRemoveBookmark(bookmark)}>삭제</button>
+              <div className='bookmark-item-name'>{bookmark.name}</div>
+              <div className='bookmark-item-address'>{bookmark.address}</div>
+              <button onClick={() => handleRemoveBookmark(bookmark.id)}>삭제</button>
             </li>
           ))}
         </ul>

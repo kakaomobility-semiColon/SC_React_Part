@@ -17,7 +17,12 @@ function Detail({ item, onClose }) {
         <p>{item.address}</p>
         <div className='detail-icon'>
           <span>
-            {item.stationChargerId && <AddBookmarkButton id={item.stationChargerId} bookmarkInfo={item} />} {/* id와 bookmarkInfo 속성 전달 */}
+            {item.stationChargerId && (
+                <AddBookmarkButton 
+                    stationChargerId = {item.stationChargerId} 
+                    name = {item.name}
+                    address={item.address}
+                />)}
             <h4>북마크하기</h4>
           </span>
           <span>
