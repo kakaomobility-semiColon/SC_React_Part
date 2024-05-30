@@ -121,12 +121,16 @@ nav ul li button {
 
 .searchbar input::placeholder {
   font-size: 18px;
+  font-weight: 600; /* semibold 효과 */
+  background-color: #51C6EB;
 }
 
 .searchbar input {
   color: #fff; /* placeholder 색상 설정 */ 
+  border-radius: 20px;
   margin-top: 5px;
   margin-left: 8px;
+  margin-right: 16px;
   border: none;
   outline: none;
   font-weight: 600; /* semibold 효과 */
