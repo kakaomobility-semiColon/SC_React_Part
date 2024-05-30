@@ -1,6 +1,6 @@
 import React from 'react';
 import './Detail.css'; 
-import { BookmarkButton } from './bmkButton';
+import { AddBookmarkButton } from './Bookmark';
 
 function Detail({ item, onClose }) {
   if (!item) {
@@ -17,12 +17,12 @@ function Detail({ item, onClose }) {
         <p>{item.address}</p>
         <div className='detail-icon'>
           <span>
-            <BookmarkButton id={item.id} /> {/* id 속성 전달 */}
-            <p>북마크하기</p>
+            {item.stationChargerId && <AddBookmarkButton id={item.stationChargerId} bookmarkInfo={item} />} {/* id와 bookmarkInfo 속성 전달 */}
+            <h4>북마크하기</h4>
           </span>
           <span>
             <button id='detail-shareicon' />
-            <p>공유하기</p>
+            <h4>공유하기</h4>
           </span>
         </div>
         <hr />

@@ -4,7 +4,7 @@ import axios from 'axios';
 import './Header.css'; // 스타일시트 임포트
 import SearchBarIcon from '../component/SVG/searchbar.svg'; // 검색바 아이콘
 import GlassesClickedIcon from '../component/SVG/glasses_clicked.svg'; // 클릭된 검색 아이콘
-import { BookmarkButton, BookmarkBlock } from './BookmarkList'; // 북마크 컴포넌트 임포트
+import { BookmarkList, OpenBookmarkList } from './Bookmark'; // 북마크 컴포넌트 임포트
 import Detail from './Detail'; // Detail 컴포넌트 임포트
 
 export default function Header({ onSearch }) {
@@ -128,7 +128,7 @@ export default function Header({ onSearch }) {
               <img src={SearchBarIcon} alt="SearchBar" onClick={toggleSearchBar} />
             </li>
             <li>
-              <BookmarkButton onClick={toggleBookmark} active={bookmarkClicked} /> {/* 북마크 버튼 */}
+              <OpenBookmarkList onClick={toggleBookmark} active={bookmarkClicked} itemInfo={selectedItem} /> {/* 북마크 버튼 */}
             </li>
           </ul>
         </nav>
@@ -155,6 +155,7 @@ export default function Header({ onSearch }) {
                 <div key={index} className="searching-item" onClick={() => handleItemClick(item)}>
                   <p className="searching-item-name">{item.name}</p>
                   <p className="searching-item-address">{item.address}</p>
+                  <p className="searching-item-id" style={{ display: 'none' }}>{item.stationchargerid}</p> {/* stationchargerid 추가 */}
                 </div>
               ))}
             </div>
@@ -167,8 +168,12 @@ export default function Header({ onSearch }) {
             </div>
           </div>
         </div>
-        <BookmarkBlock active={bookmarkClicked} onClose={toggleBookmark} /> {/* 북마크 바 */}
-        {selectedItem && <Detail item={selectedItem} onClose={handleDetailClose} />} {/* 선택된 아이템이 있을 경우 Detail 컴포넌트 표시 */}
+        {bookmarkClicked && (
+          <BookmarkList active={bookmarkClicked} onClose={toggleBookmark} onItemClick={handleItemClick} /> 
+        )}
+        {selectedItem && (
+          <Detail item={selectedItem} onClose={handleDetailClose} /> 
+        )}
       </div>
     </header>
   );
