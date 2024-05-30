@@ -83,13 +83,13 @@ flex: 1; /* 북마크 아이템들이 남은 공간을 채우도록 설정 */
 overflow-y: auto; /* 내용이 길어질 경우 스크롤 가능 */
 }
 
-ul {
+.bookmark-items {
     display: grid;
     padding: 10px;   
     margin: 20px 30px;
 }
 
-li {
+.bookmark-item {
 list-style-type: none;
 padding: 10px;
 text-align: left;

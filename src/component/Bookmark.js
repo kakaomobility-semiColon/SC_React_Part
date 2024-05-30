@@ -65,9 +65,9 @@ export function BookmarkList({ active, onClose }) {
     <div className={`bookmark-block ${active ? 'active' : ''}`}>
       <div className="bookmark-content">
         <button className="bookmark-close" onClick={onClose}>북마크 닫기</button>
-        <ul>
+        <ul className='bookmark-items'>
           {bookmarks.map((bookmark, index) => (
-            <li key={index}>
+            <li className='bookmark-item' key={index}>
               <div className='bookmark-item-name'>{bookmark.name}</div>
               <div className='bookmark-item-address'>{bookmark.address}</div>
               <button className='bookmark-delete' onClick={() => handleRemoveBookmark(bookmark.id)}>삭제</button>
