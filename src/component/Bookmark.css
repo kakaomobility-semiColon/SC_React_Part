@@ -53,7 +53,6 @@ color: #fff; /* 북마크 버튼이 활성화되었을 때 색상 */
 margin-top: 15px;
 margin-left: 10px;
 padding: 10px;
-width: 122px;
 height: 45px;
 
 display: flex;
@@ -73,8 +72,6 @@ cursor: pointer;
 .bookmark-close:hover {
 color: #51C6EB; /* 닫기 버튼을 호버할 때 색상 변경 */
 background-color: #fff;
-width: 122px;
-height: 45px;
 border-radius: 20px;
 }
 

@@ -103,6 +103,12 @@ nav ul li button {
   font-size: 18px; /* placeholder 텍스트 사이즈 설정 */
 }
 
+.search-block input:-webkit-autofill {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-transition: background-color 9999s ease-out;
+  -webkit-text-fill-color: #fff !important;
+}
+
 .searchbar_clicked {
   margin-top: 16px;
   margin-left: 40px;
