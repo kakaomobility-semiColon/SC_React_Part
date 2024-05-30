@@ -84,7 +84,7 @@ export default function Header({ onSearch }) {
         throw new Error('Server URL is not defined');
       }
       console.log('Server URL:', serverUrl); // 환경 변수 로그 출력
-      const requestUrl = `${serverUrl}/charger/search?keyword=${encodeURIComponent(searchKeyword)}`;
+      const requestUrl = `/charger/search?keyword=${encodeURIComponent(searchKeyword)}`;
       console.log('Request URL:', requestUrl); // 요청 URL 로그 출력
 
       const response = await axios.get(requestUrl);

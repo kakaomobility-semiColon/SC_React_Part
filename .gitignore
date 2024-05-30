@@ -1,4 +1,5 @@
 ##api key
 .env
+/cert
 ##eslintcache 충돌 문제
 .eslintcache
