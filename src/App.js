@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Header from './component/Header';
 import Kakao from './component/Kakao';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { dummyData } from './component/dummyData';
 import './App.css';
 
 function App() {
   const [searching, setSearching] = useState(false);
   const [items, setItems] = useState([]);
-  const { stationChargerId, name, address, operatorName, output } = dummyData.result;
 
   useEffect(() => {
     if (searching) {
