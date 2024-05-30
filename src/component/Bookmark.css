@@ -19,7 +19,7 @@
 }
   
 .bookmark-block.active {
-display: block;
+display: grid;
 animation: slide-in 0.3s forwards;
 }
 
@@ -83,34 +83,61 @@ flex: 1; /* 북마크 아이템들이 남은 공간을 채우도록 설정 */
 overflow-y: auto; /* 내용이 길어질 경우 스크롤 가능 */
 }
 
+ul {
+    display: grid;
+    padding: 10px;   
+    margin: 20px 30px;
+}
+
 li {
 list-style-type: none;
 padding: 10px;
 text-align: left;
+margin-top: 15px;
+margin-bottom: 20px;
 
 color: #000;
+border-bottom: 2px solid #d9d9d9;
 }
 
 .bookmark-item-name{
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+    padding-left: 0;
 }
 
 .bookmark-item-address{
-    font-size: 14px;
-    
+    color: #374957;
+    font-size: 15px;
+    margin-bottom: 20px;
 }
 
-.isBookmark-button{
+.bookmark-delete {
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    display: flex;
+    float: right;
+
+    cursor: pointer;
+}
+
+.bookmark-delete:hover{
+    background-color: #000;
+    color: #fff;
+}
+
+.isBookmark-button {
     background-color: white;
     border: none;
-    background-image: url('./SVG/bookmark.svg');
     background-size: cover;
     width: 40px;
     height: 50px;
     cursor: pointer;
+    background-image: url('./SVG/bookmark.svg');
 }
 
-.isBookmark-button:visited {
+.isBookmark-button.active {
     background-image: url('./SVG/bookmark_clicked.svg');
 }

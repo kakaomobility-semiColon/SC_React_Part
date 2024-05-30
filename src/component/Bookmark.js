@@ -40,13 +40,12 @@ export function AddBookmarkButton({ stationChargerId, name, address }) {
 
   return (
     <button 
-      className={`isBookmark-button ${isBookmarked ? 'active' : ''}`} 
+      className={`isBookmark-button ${isBookmarked ? 'active' : ''}`}
       onClick={handleAddBookmark}
     />
   );
 }
 
-//bookmarklist에 있는 block
 //bookmarklist에 있는 block
 export function BookmarkList({ active, onClose }) {
   const [bookmarks, setBookmarks] = useState([]);
@@ -71,7 +70,7 @@ export function BookmarkList({ active, onClose }) {
             <li key={index}>
               <div className='bookmark-item-name'>{bookmark.name}</div>
               <div className='bookmark-item-address'>{bookmark.address}</div>
-              <button onClick={() => handleRemoveBookmark(bookmark.id)}>삭제</button>
+              <button className='bookmark-delete' onClick={() => handleRemoveBookmark(bookmark.id)}>삭제</button>
             </li>
           ))}
         </ul>
