@@ -7,7 +7,7 @@ function Kakao() {
 
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAOMAP_API_KEY}&libraries=services,drawing`;
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAOMAP_API_KEY}&libraries=services,clusterer,drawing`;
     script.async = true;
     script.onload = () => {
       mapscript();

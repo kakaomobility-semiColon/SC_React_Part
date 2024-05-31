@@ -1,29 +1,38 @@
 import React from 'react';
 import './Detail.css'; 
-import {BookmarkButton} from './bmkButton';
+import { AddBookmarkButton } from './Bookmark';
 
 function Detail({ item, onClose }) {
   if (!item) {
     return null;
   }
+    const handleGetDirections = () => {
+        const mapUrl = `https://map.kakao.com/link/search/${item.name}`;
+        window.location.href = mapUrl;
+    };
 
-  return (
-    <div className="detail-block"> {/* 검색 결과와 같은 레벨에 나타나도록 수정 */}
+    return (
+    <div className="detail-block">
       <div className="detail">
-        <button className="detail-close" onClick={onClose}></button> {/* 닫기 버튼 추가 */}
+        <button className="detail-close" onClick={onClose}></button> {/* 닫기 버튼 */}
         <br></br>
         <img id="detail-img" alt='detail-img' src='https://www.carguy.kr/news/photo/201804/32027_6843_1617.jpg'></img>
         <h1>{item.name}</h1>
         <p>{item.address}</p>
         <div className='detail-icon'>
+          <span>
+            {item.stationChargerId && (
+                <AddBookmarkButton
+                    stationChargerId = {item.stationChargerId}
+                    name = {item.name}
+                    address={item.address}
+                />)}
+            <h4>북마크하기</h4>
+          </span>
             <span>
-                <BookmarkButton />
-                <p>북마크하기</p>
-            </span>
-            <span>
-                <button id='detail-shareicon' />
-                <p>공유하기</p>
-            </span>
+                <button id='detail-shareicon' onClick={handleGetDirections}></button>
+            <h4>길찾기</h4>
+          </span>
         </div>
         <hr />
         <p>운영자: {item.operatorName}</p>
@@ -34,6 +43,7 @@ function Detail({ item, onClose }) {
       </div>
     </div>
   );
+
 }
 
 export default Detail;

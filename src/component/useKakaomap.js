@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import axios from 'axios';
-import { createMarkerContent} from './markerContents';
+import { createMarkerContent } from './markerContents';
 
-export const useKakaomap = () => {
+export const useKakaomap = (onSelectItem, onCloseDetail) => {
   return useCallback(() => {
     if (window.kakao && window.kakao.maps) {
       const container = document.getElementById('map');
@@ -33,6 +33,19 @@ export const useKakaomap = () => {
             searchBar.style.display = 'none';
             searchBar.classList.remove('fade-out');
           }, 500);
+        }
+
+        const detailBlock = document.querySelector('.detail-block');
+        if (detailBlock) {
+          detailBlock.classList.add('fade-out');
+          setTimeout(() => {
+            detailBlock.style.display = 'none';
+            detailBlock.classList.remove('fade-out');
+          }, 500);
+        }
+
+        if (onCloseDetail) {
+          onCloseDetail();
         }
       }
 
@@ -69,6 +82,10 @@ export const useKakaomap = () => {
               closeOverlays();
               overlay.setMap(map);
 
+              if (onSelectItem) {
+                onSelectItem(data);
+              }
+
               // Prevent overlay click event from propagating to the map
               content.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -87,38 +104,6 @@ export const useKakaomap = () => {
       window.kakao.maps.event.addListener(map, 'click', function() {
         closeOverlays();
       });
-
-      const searchBar = document.querySelector('.search-block');
-      if (searchBar) {
-        const resizeHandle = document.createElement('div');
-        resizeHandle.className = 'resize-handle';
-        searchBar.appendChild(resizeHandle);
-
-        let isResizing = false;
-        let startX = 0;
-        let startWidth = 0;
-
-        resizeHandle.addEventListener('mousedown', (e) => {
-          isResizing = true;
-          startX = e.clientX;
-          startWidth = searchBar.offsetWidth;
-          document.addEventListener('mousemove', onMouseMove);
-          document.addEventListener('mouseup', onMouseUp);
-        });
-
-        function onMouseMove(e) {
-          if (!isResizing) return;
-          const newWidth = startWidth + (e.clientX - startX);
-          if (newWidth < 435) return;
-          searchBar.style.width = `${newWidth}px`;
-        }
-
-        function onMouseUp() {
-          isResizing = false;
-          document.removeEventListener('mousemove', onMouseMove);
-          document.removeEventListener('mouseup', onMouseUp);
-        }
-      }
     }
-  }, []);
+  }, [onSelectItem, onCloseDetail]);
 };

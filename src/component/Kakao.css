@@ -45,7 +45,9 @@
     height: 17px;
     background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
 }
-.info .close:hover {cursor: pointer;}
+.info .close:hover {
+    cursor: pointer;
+}
 .info .body {
     position: relative;
     overflow: hidden;
@@ -63,7 +65,7 @@
 .desc .jibun {
     font-size: 11px;
     color: #888;
-    margin-top: -2px;
+    margin-top: 2px;
 }
 .info:after {
     content: '';
@@ -75,4 +77,6 @@
     height: 12px;
     background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png');
 }
-.info .link {color: #5085BB;}
+.info .link {
+    color: #5085BB;
+}
