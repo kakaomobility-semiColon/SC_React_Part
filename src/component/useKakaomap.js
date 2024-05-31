@@ -43,10 +43,6 @@ export const useKakaomap = (onSelectItem, onCloseDetail) => {
             detailBlock.classList.remove('fade-out');
           }, 500);
         }
-
-        if (onCloseDetail) {
-          onCloseDetail();
-        }
       }
 
       window.kakao.maps.event.addListener(map, 'idle', async function() {
@@ -104,6 +100,38 @@ export const useKakaomap = (onSelectItem, onCloseDetail) => {
       window.kakao.maps.event.addListener(map, 'click', function() {
         closeOverlays();
       });
+    
+      const searchBar = document.querySelector('.search-block');
+      if (searchBar) {
+        const resizeHandle = document.createElement('div');
+        resizeHandle.className = 'resize-handle';
+        searchBar.appendChild(resizeHandle);
+
+        let isResizing = false;
+        let startX = 0;
+        let startWidth = 0;
+
+        resizeHandle.addEventListener('mousedown', (e) => {
+          isResizing = true;
+          startX = e.clientX;
+          startWidth = searchBar.offsetWidth;
+          document.addEventListener('mousemove', onMouseMove);
+          document.addEventListener('mouseup', onMouseUp);
+        });
+
+        function onMouseMove(e) {
+          if (!isResizing) return;
+          const newWidth = startWidth + (e.clientX - startX);
+          if (newWidth < 435) return;
+          searchBar.style.width = `${newWidth}px`;
+        }
+
+        function onMouseUp() {
+          isResizing = false;
+          document.removeEventListener('mousemove', onMouseMove);
+          document.removeEventListener('mouseup', onMouseUp);
+        }
+      }
     }
-  }, [onSelectItem, onCloseDetail]);
+  }, []);
 };
