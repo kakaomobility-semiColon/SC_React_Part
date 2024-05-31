@@ -16,20 +16,20 @@
 }
 
 .detail-close {
-    display:inline-block;
+    display: inline-block;
     font-size: 30px;
     color: #51C6EB;
     background-color: #fff;
-    border-radius: 10px; 
+    border-radius: 10px;
     border: none;
     border-color: #51C6EB;
-    padding: 7px 20px; 
-    cursor: pointer; 
+    padding: 7px 20px;
+    cursor: pointer;
 }
 
-.detail-close::after{
+.detail-close::after {
     display: inline-block;
-    content: "\00d7"; 
+    content: "\00d7";
     font-size: 36px;
 }
 
@@ -47,27 +47,40 @@
     text-align: left; /* 글자 왼쪽 정렬 */
 }
 
-#detail-img{
+#detail-img {
     margin-top: 20px;
     border-radius: 20px;
     width: 415.5px;
 }
 
-h1{
+h1 {
     font-size: 29px;
 }
 
-.detial-icon {
+.detail-icon {
     display: flex;
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
+    background-color: transparent;
 }
 
-.detial-icon span{
+.detail-icon span {
     display: flex;
     align-items: center;
     gap: 8px;
+    background-color: transparent;
+}
+
+.detail-locationicon {
+    background-color: white;
+    border: none;
+    background-size: cover;
+    width: 64px;
+    height: 70px;
+    cursor: pointer;
+    padding: 0;
+    background-image: url('./SVG/location.svg')
 }
 
 #update {

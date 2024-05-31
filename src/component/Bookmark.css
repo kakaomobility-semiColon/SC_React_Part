@@ -133,6 +133,7 @@ border-bottom: 2px solid #d9d9d9;
     height: 50px;
     cursor: pointer;
     background-image: url('./SVG/bookmark.svg');
+    gap: 10px;
 }
 
 .isBookmark-button.active {

@@ -127,7 +127,7 @@ export const useKakaomap = () => {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
             const locPosition = new window.kakao.maps.LatLng(lat, lng);
-            const message = '<div style="padding:5px;">내 현재 위치</div>';
+            const message = '<div style="display: inline-block; padding: 10px;">내 현재 위치</div>';
 
             displayMarker(locPosition, message);
             map.setCenter(locPosition);
