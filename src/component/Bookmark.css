@@ -17,84 +17,84 @@
     overflow: hidden;
     resize: horizontal;
 }
-  
+
 .bookmark-block.active {
-display: grid;
-animation: slide-in 0.3s forwards;
+    display: grid;
+    animation: slide-in 0.3s forwards;
 }
 
 @keyframes slide-in {
-from {
-    transform: translateX(-100%);
-}
-to {
-    transform: translateX(0);
-}
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
 }
 @keyframes fadeOut {
-from {
-    opacity: 1;
-    transform: translateX(0);
-}
-to {
-    opacity: 0;
-    transform: translateX(-100%);
-}
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
 }
 .bookmark-block.fade-out {
-animation: fadeOut 0.5s backwards;
+    animation: fadeOut 0.5s backwards;
 }
 
 .bookmark-button.active .bookmark-icon {
-color: #fff; /* 북마크 버튼이 활성화되었을 때 색상 */
+    color: #fff; /* 북마크 버튼이 활성화되었을 때 색상 */
 }
 
 .bookmark-close {
-margin-top: 15px;
-margin-left: 10px;
-padding: 10px;
-height: 45px;
+    margin-top: 15px;
+    margin-left: 10px;
+    padding: 10px;
+    height: 45px;
 
-display: flex;
-align-self: flex-start; /* 닫기 버튼을 오른쪽 위로 위치 */
-justify-content: center;
-background: none;
-border: none;
+    display: flex;
+    align-self: flex-start; /* 닫기 버튼을 오른쪽 위로 위치 */
+    justify-content: center;
+    background: none;
+    border: none;
 
-color: #fff;
-background-color: #51C6EB;
-border-radius: 20px;
-font-size: 20px;
-font-weight: bold;
-cursor: pointer;
+    color: #fff;
+    background-color: #51C6EB;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .bookmark-close:hover {
-color: #51C6EB; /* 닫기 버튼을 호버할 때 색상 변경 */
-background-color: #fff;
-border-radius: 20px;
+    color: #51C6EB; /* 닫기 버튼을 호버할 때 색상 변경 */
+    background-color: #fff;
+    border-radius: 20px;
 }
 
 .bookmark-items {
-flex: 1; /* 북마크 아이템들이 남은 공간을 채우도록 설정 */
-overflow-y: auto; /* 내용이 길어질 경우 스크롤 가능 */
+    flex: 1; /* 북마크 아이템들이 남은 공간을 채우도록 설정 */
+    overflow-y: auto; /* 내용이 길어질 경우 스크롤 가능 */
 }
 
 .bookmark-items {
     display: grid;
-    padding: 10px;   
+    padding: 10px;
     margin: 20px 30px;
 }
 
 .bookmark-item {
-list-style-type: none;
-padding: 10px;
-text-align: left;
-margin-top: 15px;
-margin-bottom: 20px;
+    list-style-type: none;
+    padding: 10px;
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 20px;
 
-color: #000;
-border-bottom: 2px solid #d9d9d9;
+    color: #000;
+    border-bottom: 2px solid #d9d9d9;
 }
 
 .bookmark-item-name{

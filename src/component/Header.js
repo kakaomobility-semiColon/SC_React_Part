@@ -46,9 +46,9 @@ export default function Header({ onSearch }) {
 
     for (let page = 1; page <= totalPages; page++) {
       pages.push(
-        <button key={page} onClick={() => handlePageClick(page)} className={page === currentPage ? 'active' : ''}>
-          {page}
-        </button>
+          <button key={page} onClick={() => handlePageClick(page)} className={page === currentPage ? 'active' : ''}>
+            {page}
+          </button>
       );
 
       if (pages.length >= visiblePages) break;
@@ -120,61 +120,61 @@ export default function Header({ onSearch }) {
   };
 
   return (
-    <header>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <img src={SearchBarIcon} alt="SearchBar" onClick={toggleSearchBar} />
-            </li>
-            <li>
-              <OpenBookmarkList onClick={toggleBookmark} active={bookmarkClicked} itemInfo={selectedItem} /> {/* 북마크 버튼 */}
-            </li>
-          </ul>
-        </nav>
-        <div className="search-block" style={{ display: searchBarClicked ? 'block' : 'none' }}>
-          <div className="searchbar_clicked">
-            <div className="searchbar">
-              <img src={GlassesClickedIcon} alt="Search" className="glassesclicked-icon" onClick={handleSearch} />
-              <input
-                type="text"
-                id="search-input" // 고유한 id 속성 추가
-                name="search-input" // 고유한 name 속성 추가
-                placeholder="장소, 위치, 대중교통 검색"
-                value={searchKeyword}
-                onChange={(e) => setSearchKeyword(e.target.value)}
-                onKeyDown={handleKeyDown} // onKeyDown 이벤트 핸들러 추가
-              />
-            </div>
-            <div className="searching-box">
-              {isSearching && <div>검색 중...</div>} {/* 검색 중 메시지 추가 */}
-              {!isSearching && noResults && (
-                <div>검색 결과가 없습니다.</div>
-              )}
-              {!isSearching && searchResults.slice((currentPage - 1) * resultsPerPage, currentPage * resultsPerPage).map((item, index) => (
-                <div key={index} className="searching-item" onClick={() => handleItemClick(item)}>
-                  <p className="searching-item-name">{item.name}</p>
-                  <p className="searching-item-address">{item.address}</p>
-                  <p className="searching-item-id" style={{ display: 'none' }}>{item.stationchargerid}</p> {/* stationchargerid 추가 */}
-                </div>
-              ))}
-            </div>
-            <div className="page-bar">
-              <button onClick={handleFirstPage}>«</button>
-              <button onClick={handlePrevPage}>‹</button>
-              {renderPageNumbers()}
-              <button onClick={handleNextPage}>›</button>
-              <button onClick={handleLastPage}>»</button>
+      <header>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <img src={SearchBarIcon} alt="SearchBar" onClick={toggleSearchBar} />
+              </li>
+              <li>
+                <OpenBookmarkList onClick={toggleBookmark} active={bookmarkClicked} itemInfo={selectedItem} /> {/* 북마크 버튼 */}
+              </li>
+            </ul>
+          </nav>
+          <div className="search-block" style={{ display: searchBarClicked ? 'block' : 'none' }}>
+            <div className="searchbar_clicked">
+              <div className="searchbar">
+                <img src={GlassesClickedIcon} alt="Search" className="glassesclicked-icon" onClick={handleSearch} />
+                <input
+                    type="text"
+                    id="search-input" // 고유한 id 속성 추가
+                    name="search-input" // 고유한 name 속성 추가
+                    placeholder="장소, 위치, 대중교통 검색"
+                    value={searchKeyword}
+                    onChange={(e) => setSearchKeyword(e.target.value)}
+                    onKeyDown={handleKeyDown} // onKeyDown 이벤트 핸들러 추가
+                />
+              </div>
+              <div className="searching-box">
+                {isSearching && <div>검색 중...</div>} {/* 검색 중 메시지 추가 */}
+                {!isSearching && noResults && (
+                    <div>검색 결과가 없습니다.</div>
+                )}
+                {!isSearching && searchResults.slice((currentPage - 1) * resultsPerPage, currentPage * resultsPerPage).map((item, index) => (
+                    <div key={index} className="searching-item" onClick={() => handleItemClick(item)}>
+                      <p className="searching-item-name">{item.name}</p>
+                      <p className="searching-item-address">{item.address}</p>
+                      <p className="searching-item-id" style={{ display: 'none' }}>{item.stationchargerid}</p> {/* stationchargerid 추가 */}
+                    </div>
+                ))}
+              </div>
+              <div className="page-bar">
+                <button onClick={handleFirstPage}>«</button>
+                <button onClick={handlePrevPage}>‹</button>
+                {renderPageNumbers()}
+                <button onClick={handleNextPage}>›</button>
+                <button onClick={handleLastPage}>»</button>
+              </div>
             </div>
           </div>
+          {bookmarkClicked && (
+              <BookmarkList active={bookmarkClicked} onClose={toggleBookmark} />
+          )}
+          {selectedItem && (
+              <Detail item={selectedItem} onClose={handleDetailClose} />
+          )}
         </div>
-        {bookmarkClicked && (
-          <BookmarkList active={bookmarkClicked} onClose={toggleBookmark} onItemClick={handleItemClick} /> 
-        )}
-        {selectedItem && (
-          <Detail item={selectedItem} onClose={handleDetailClose} /> 
-        )}
-      </div>
-    </header>
+      </header>
   );
 }

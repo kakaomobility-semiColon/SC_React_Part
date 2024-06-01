@@ -12,7 +12,6 @@
     box-shadow: 0px 0px 10px rgb(35, 35, 35);
     transition: opacity 1s, transform 1s;
     overflow: hidden;
-    resize: horizontal; /* 수평 크기 조정 활성화 */
 }
 
 .detail-close {
@@ -39,12 +38,13 @@
 }
 
 .detail {
-    margin: 0; /* 내부 여백 제거 */
     margin-top: 15px;
     margin-bottom: 20px;
-    padding: 10px; /* 아이템 내부 여백 추가 */
-    border-bottom: 2px solid #D9D9D9; /* 하단에 선 추가 */
+    margin-left: 30px;
+    border-bottom: 5px solid #D9D9D9; /* 하단에 선 추가 */
     text-align: left; /* 글자 왼쪽 정렬 */
+    font-size: 15px; /* 글꼴 크기 */
+    color: #374957; /* 글자 색상 */
 }
 
 #detail-img {
@@ -53,37 +53,97 @@
     width: 415.5px;
 }
 
-h1 {
-    font-size: 29px;
-}
-
 .detail-icon {
     display: flex;
     align-items: center;
-    flex-direction: row;
     justify-content: space-between;
-    background-color: transparent;
 }
 
-.detail-icon span {
+.locationicon-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 8px;
-    background-color: transparent;
 }
 
-.detail-locationicon {
-    background-color: white;
+.bookmarkicon{
+    margin-top: 30px;
+}
+
+.locationicon {
+    background-color: transparent;
     border: none;
-    background-size: cover;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.bookmarkicon button:hover,
+.locationicon:hover {
+    background-color: #51C6EB;
+    color: #fff;
+}
+
+.locationicon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px; /* 추가 */
+    margin-right: 24px;
+}
+
+.locationicon {
     width: 64px;
     height: 70px;
-    cursor: pointer;
-    padding: 0;
-    background-image: url('./SVG/location.svg')
+    background-size: cover;
+    background-image: url('./SVG/location.svg');
+}
+
+.locationicon-container h4 {
+    margin-top: 5px; /* 버튼과 텍스트 사이 간격 조절 */
 }
 
 #update {
     color: gray;
     font-size: smaller;
+}
+
+button h4 {
+    margin: 0; /* 기본 마진 제거 */
+}
+
+.detail p {
+    font-size: 15px;
+    color: #374957;
+    margin-bottom: -3px; /* 글자 사이 간격 조절 */
+}
+
+.detail p.address {
+    font-size: 18px; /* address 글씨 크기 */
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: black; /* 글자 색상 */
+}
+
+.detail p {
+    font-size: 15px;
+    color: #374957;
+    margin-bottom: 5px; /* 각 <p> 요소의 하단에 5px 간격 추가 */
+}
+
+.address {
+    font-size: 18px; /* address 글씨 크기 */
+    color: black; /* 글자 색상 */
+}
+
+.operator {
+    margin-top: 10px; /* address와 operator 사이 간격 조절 */
+}
+
+h1 {
+    font-size: 29px;
+    color: black;
+    margin-bottom: 15px; /* h1과 p 사이 간격 */
+}
+
+h1 + p {
+    margin-top: 0; /* p 요소의 상단 마진 제거 */
 }
