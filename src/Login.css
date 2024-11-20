@@ -1,0 +1,116 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .login-logo-text {
+    display: flex;
+    align-items: center; /* 텍스트와 로고를 수직 중앙 정렬 */
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 100px;
+  }
+  
+  .login-logo {
+    width: 35px; /* 로고 크기 설정 */
+    height: auto;
+    margin-top: 18px; /* 로고의 위쪽에 여백 추가 */
+    margin-left: 7px; /* 로고와 텍스트 간 의 여백 */
+  }
+  
+  .login-ele {
+    color: #01A0FF;
+    font-size: 57px;
+    font-weight: bold;
+  }
+  
+  .login-car {
+    color: #003056;
+    font-size: 57px;
+    font-weight: bold;
+  }
+
+  .input-group {
+    width: 450px;
+    margin-bottom: 25x;
+    position: relative; /* 상대 위치 지정 */
+    margin-bottom: 36px;
+  }
+  
+  .input-group label {
+    font-size: 16px;
+    color: #9D9FA1;
+    position: absolute; /* 절대 위치 */
+    top: -25px; /* 입력박스 위쪽으로 위치 조정 */
+    left: 3px; /* 입력박스 왼쪽 경계와 일치하도록 */
+  }
+  
+  .input-group input {
+    width: 100%;
+    height: 58px;
+    border: 3px solid #D9D9D9;
+    border-radius: 10px;
+    padding: 0 15px;
+    font-size: 20px;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .input-group input::placeholder {
+    color: #9D9FA1;
+}
+
+.login-button {
+    width: 450px;  /* 입력창과 동일한 너비 */
+    height: 58px;  /* 입력창 높이와 동일 */
+    background-color: #01A0FF;  /* 버튼 배경색 */
+    color: white;  /* 버튼 텍스트 색상 */
+    border: none;  /* 기본 테두리 제거 */
+    border-radius: 10px;  /* 입력창과 동일한 둥근 테두리 */
+    font-size: 22px;  /* 버튼 텍스트 크기 */
+    font-weight: bold;
+    cursor: pointer;  /* 마우스 커서가 손 모양으로 변경 */
+  }
+  
+  .login-button:hover {
+    background-color: #20ACFF;  /* 버튼에 마우스를 올렸을 때 색상 변경 */
+  }
+
+  .footer-buttons {
+    display: flex;
+    justify-content: space-between;  /* 양쪽 끝으로 배치 */
+    width: 450px;
+    margin-top: 4px;  /* 버튼 사이의 간격 */
+    margin-bottom: 100px;
+  }
+  
+  .find-buttons {
+    display: flex;
+    gap: 5px;  /* 버튼 간격 */
+  }
+  
+  .find-button {
+    background-color: transparent; /* 배경 제거 */
+    border: none;
+    color: #003056;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .signup-button {
+    background-color: transparent; /* 배경 제거 */
+    border: none;
+    color: #003056;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .login-divider {
+    width: 1px; /* 막대의 너비 */
+    height: 22px; /* 막대의 높이 */
+    background-color: #D9D9D9; /* 막대의 색상 */
+    margin-top: 5px;
+  }

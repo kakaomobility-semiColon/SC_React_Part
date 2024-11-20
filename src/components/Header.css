@@ -1,0 +1,53 @@
+.App-header {
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 100px;
+  }
+  
+  .header-logo-text {
+    display: flex;
+    align-items: center; /* 텍스트와 로고를 수직 중앙 정렬 */
+  }
+  
+  .header-logo {
+    width: 30px; /* 로고 크기 설정 */
+    height: auto;
+    margin-top: 15px; /* 로고의 위쪽에 여백 추가 */
+    margin-left: 7px; /* 로고와 텍스트 간 의 여백 */
+  }
+  
+  .header-ele {
+    color: #01A0FF;
+    font-size: 48px;
+    font-weight: bold;
+  }
+  
+  .header-car {
+    color: #003056;
+    font-size: 48px;
+    font-weight: bold;
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .nav a {
+    color: #003056;
+    text-decoration: none;
+    font-size: 13px;
+  }
+  
+  .nav a:hover {
+    font-weight: bold; /* 글자 굵기 변경 */
+  }  
+  
+  .header-divider {
+    width: 0.7px; /* 막대의 너비 */
+    height: 18px; /* 막대의 높이 */
+    background-color: #003056; /* 막대의 색상 */
+    margin: 0 20px; /* 링크 사이의 여백 */
+  }
